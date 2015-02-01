@@ -1,10 +1,12 @@
 __author__ = 'balhau'
 
+import inspect, os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-databasePath='sqlite:///tmp/evote.db'
+path=os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+"/evote.db"
+databasePath='sqlite:///'+path
 engine = create_engine(databasePath, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,

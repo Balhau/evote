@@ -1,10 +1,9 @@
+from evote.database.models.models import User
+
 __author__ = 'balhau'
 from flask import Flask
-from flask import request
 from flask import render_template
-import subprocess,shlex,json,os,signal
-from os import listdir
-from os.path import isfile, join
+from evote.database.dbase import init_db, db_session
 
 
 app=Flask(__name__)
@@ -13,7 +12,8 @@ omxProcess=None
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+    init_db()
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
