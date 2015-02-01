@@ -18,9 +18,9 @@ purposes it would be nice to work with a language that don't get in the way.
 
 To successfully run this project you must install in your running environment a set of packages needed as dependencies
 
-*   M2Crypto
+*   **M2Crypto**
     *   This is a OpenSSL wrapper that is used to run the cryptographic routines needed
-*   SQLAlchemy
+*   **SQLAlchemy**
     *   THis is a ORM for operation between the application and databases
 
 ###Notes
