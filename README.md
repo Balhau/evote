@@ -14,6 +14,15 @@ in my own opinion very simple to read. This last point is a important one becaus
 purposes it would be nice to work with a language that don't get in the way.
 
 
+### Third parties
+
+To successfully run this project you must install in your running environment a set of packages needed as dependencies
+
+    * M2Crypto
+        * This is a OpenSSL wrapper that is used to run the cryptographic routines needed
+    * SQLAlchemy
+        * THis is a ORM for operation between the application and databases
+
 ###Notes
 
 For this project we use the **PyCharm IDE** (open edition) that is very recommended. It integrates very well with unit
