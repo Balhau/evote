@@ -13,6 +13,9 @@ omxProcess=None
 @app.route('/')
 def index():
     init_db()
+    u = User("digri","digri@digri.com")
+    db_session.add(u)
+    db_session.commit()
     return render_template('index.html')
 
 

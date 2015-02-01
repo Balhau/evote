@@ -1,5 +1,5 @@
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql.schema import ForeignKey
+from sqlalchemy.sql.schema import ForeignKey, Table
 
 
 __author__ = 'balhau'
@@ -7,11 +7,17 @@ __author__ = 'balhau'
 from sqlalchemy import Column, Integer, String
 from evote.database.dbase import Base
 
+survey_user_table = Table('survey_user', Base.metadata,
+    Column('user_id', Integer, ForeignKey('user.id')),
+    Column('survey_id', Integer, ForeignKey('survey.id'))
+)
+
 class User(Base):
-    __tablename__='users'
+    __tablename__='user'
     id=Column(Integer,primary_key=True)
     name=Column(String(50),unique=True)
     email=Column(String(120),unique=True)
+    surveys=relationship('Survey',secondary=survey_user_table)
 
     def __init__(self, name=None, email=None):
         self.name = name
@@ -21,13 +27,22 @@ class User(Base):
         return '<User %r>' % (self.name)
 
 
+class PubKey(Base):
+    __tablename__='pubkey'
+
+    id=Column(Integer,primary_key=True)
+    idSurvey=Column(Integer,ForeignKey('survey.id'))
+    pubkey=Column(String)
+
+
+
 class Vote(Base):
     __tablename__='vote'
 
     id=Column(Integer,primary_key=True)
-    idSurvey=Column(Integer,ForeignKey("survey.id"))
+    idSurvey=Column(Integer,ForeignKey('survey.id'))
+    idPubKey=Column(Integer,ForeignKey("pubkey.id"))
     vote=Column(String(50))
-    pubkey=Column(String)
     signature=Column(String)
 
     def __init__(self,vote,pubkey,signature):
@@ -44,7 +59,7 @@ class Survey(Base):
 
     id=Column(Integer,primary_key=True)
     name=Column(String(50),unique=True)
-    votes=relationship("Vote")
+    votes=relationship('Vote')
 
 
 
