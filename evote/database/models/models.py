@@ -5,7 +5,7 @@ from sqlalchemy.sql.schema import ForeignKey, Table
 __author__ = 'balhau'
 
 from sqlalchemy import Column, Integer, String
-from evote.database.dbase import Base
+from evote.evote.database.dbase import Base
 
 survey_user_table = Table('survey_user', Base.metadata,
     Column('user_id', Integer, ForeignKey('user.id')),
@@ -17,14 +17,16 @@ class User(Base):
     id=Column(Integer,primary_key=True)
     name=Column(String(50),unique=True)
     email=Column(String(120),unique=True)
+    pubKey=Column(String)
     surveys=relationship('Survey',secondary=survey_user_table)
 
-    def __init__(self, name=None, email=None):
+    def __init__(self, name=None, pubkey=None ,email=None):
         self.name = name
         self.email = email
+        self.pubKey=pubkey
 
     def __repr__(self):
-        return '<User %r>' % (self.name)
+        return '<User %r, %r>' % (self.name,self.pubKey)
 
 
 class PubKey(Base):

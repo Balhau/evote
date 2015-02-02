@@ -1,4 +1,4 @@
-from evote.crypto import KeyPair
+from evote.evote.crypto import KeyPair
 
 __author__ = 'balhau'
 
