@@ -1,8 +1,13 @@
-from evote.evote.crypto import KeyPair
+from os import path
+print path
+
+from ..crypto.keypair import KeyPair
 
 __author__ = 'balhau'
 
-kp=KeyPair.KeyPair()
+
+kp=KeyPair()
+
 
 kp.generateRSAKeyPair(1024)
 

@@ -2,8 +2,6 @@ __author__ = 'balhau'
 
 from M2Crypto import RSA
 
-
-
 class KeyPair:
 
     def __init__(self):

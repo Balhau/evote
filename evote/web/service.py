@@ -1,10 +1,10 @@
-from evote.evote.database.models.models import User
-
 __author__ = 'balhau'
+
 from flask import Flask
 from flask import render_template
 from flask import request
-from evote.evote.database.dbase import init_db, db_session
+from evote.database.dbase import init_db, db_session
+from evote.database.models.models import User
 
 
 app=Flask(__name__)
