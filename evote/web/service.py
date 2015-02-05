@@ -3,9 +3,11 @@ __author__ = 'balhau'
 from flask import Flask
 from flask import render_template
 from flask import request
-from evote.database.dbase import init_db, db_session
-from evote.database.models.models import User
+import json
+from database.dbase import init_db, db_session
+from database.models.models import User
 
+init_db()
 
 app=Flask(__name__)
 
@@ -13,19 +15,16 @@ omxProcess=None
 
 @app.route('/')
 def index():
-    init_db()
-    u = User("digri","digri@digri.com")
-    db_session.add(u)
-    db_session.commit()
     return render_template('index.html')
 
 
 @app.route("/newuser",methods=['POST'])
 def newuser():
     try:
-        name=request.form['name']
-        pubkey=request.form['pubkey']
-        mail=request.form['mail']
+        data=json.loads(request.data)
+        name=data['name']
+        pubkey=data['pubkey']
+        mail=data['mail']
         u = User(name,pubkey,mail)
         db_session.add(u)
         db_session.commit()
@@ -33,7 +32,12 @@ def newuser():
     except:
         return '{"status":"fail"}'
 
-
+@app.route("/regkey",methods=['POST'])
+def regkey():
+    try:
+        return '{"status":"ok"}'
+    except:
+        return '{"status":"fail"}'
 if __name__ == '__main__':
 	app.debug=True
 	app.run(host='0.0.0.0')

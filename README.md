@@ -22,6 +22,39 @@ To successfully run this project you must install in your running environment a 
     *   This is a OpenSSL wrapper that is used to run the cryptographic routines needed
 *   **SQLAlchemy**
     *   THis is a ORM for operation between the application and databases
+    
+
+
+###Running the tools
+
+To run the service and tools you must first set the python path in your shell. If you're using linux you can do that
+by writing 
+
+        export PYTHONPATH=$(pwd)
+        
+inside the **evote/evote** folder
+
+To run the web application you can do 
+
+        python web/service.py
+        
+To create a public/private pair of keys you can execute
+
+        python tools/evote.py  -g kpair -l 2048 -o user
+
+This will create in the current folder the files **user_priv.der** and **user_pub.pem** that are the public and
+private key respectively
+        
+After the service is running and you got the keys you can create users in the platform by invoking, for example, 
+the command
+
+        python tools/evote.py -g user -u user -Pk user_pub.pem -m user@user.net
+
+
+To check all this working open the **evote/evote/database/evote.db** SQLite database and check for the user 
+ table. If everything is ok you'll see a new user with a public key, like in the following image
+ 
+ ![EVote User](http://shared.balhau.net/evote/newuser.png "EVote new user")
 
 ###Notes
 

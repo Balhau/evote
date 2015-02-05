@@ -1,7 +1,4 @@
-from os import path
-print path
-
-from ..crypto.keypair import KeyPair
+from crypto.keypair import KeyPair
 
 __author__ = 'balhau'
 

@@ -5,7 +5,7 @@ from sqlalchemy.sql.schema import ForeignKey, Table
 __author__ = 'balhau'
 
 from sqlalchemy import Column, Integer, String
-from evote.tools.evote.database.dbase import Base
+from database.dbase import Base
 
 survey_user_table = Table('survey_user', Base.metadata,
     Column('user_id', Integer, ForeignKey('user.id')),
