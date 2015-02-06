@@ -48,7 +48,7 @@ private key respectively
 After the service is running and you got the keys you can create users in the platform by invoking, for example, 
 the command
 
-        python tools/evote.py -g user -u user -Pk user_pub.pem -m user@user.net
+        python tools/evote.py -g user -n user -Pk user_pub.pem -m user@user.net
 
 
 To check all this working open the **evote/evote/database/evote.db** SQLite database and check for the user 

@@ -57,12 +57,19 @@ class Vote(Base):
 
 
 class Survey(Base):
+
     __tablename__='survey'
 
     id=Column(Integer,primary_key=True)
     name=Column(String(50),unique=True)
+    description=Column(String)
     votes=relationship('Vote')
 
+    def __init__(self, name=None,description=None):
+        self.name = name
+        self.description=description
 
+    def __repr__(self):
+        return '<User %r, %r>' % (self.name,self.description)
 
 

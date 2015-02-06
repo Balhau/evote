@@ -18,3 +18,9 @@ class EvoteClient:
         req={'user':user,'key':regKey,'signature':signature}
         r=requests.post(self.url+"/regkey",json.dumps(req))
         return r.text
+
+    def registerSurvey(self,name,description):
+        req={'surveyname':name,'description':description}
+        r=requests.post(self.url+"/newsurvey",json.dumps(req))
+        return r.text
+

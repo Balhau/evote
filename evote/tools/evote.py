@@ -25,7 +25,7 @@ def registerUser(server,user,pubkey,mail):
     pubkeydata=file.read(f)
     return c.createUser(user,pubkeydata,mail)
 
-
+LOCALHOST='http://127.0.0.1:5000'
 
 # Command tool to operate with the evote service as well as to manage the cryptographic tokens
 def main():
@@ -38,19 +38,30 @@ def main():
         parser.add_argument('-pk', '--privkey')
         parser.add_argument('-s',  '--server')
         parser.add_argument('-m',  '--email')
-        parser.add_argument('-u',  '--username')
+        parser.add_argument('-n',  '--name')
+        parser.add_argument('-d',  '--description')
+        parser.add_argument('-li'  '--list')
         parser.add_argument('-v', dest='verbose', action='store_true')
         args = parser.parse_args()
+        server=LOCALHOST
+        if args.server:
+            server=args.server
         #generate a keypair
         if args.generate =='kpair' :
             generateKP(args.length,args.output)
 
         #Register user in evote service
         if args.generate =='user':
-            server='http://127.0.0.1:5000'
-            if args.server:
-                server=args.server
             print registerUser(server,args.username,args.pubkey,args.email)
+
+        #Create New Survey
+        if(args.generate == 'survey'):
+            print EvoteClient(server).registerSurvey(args.name,args.description)
+
+        #List the surveys
+        if args.list == 'survey':
+            print "list the surveys"
+
 
 
     except Exception as inst:
