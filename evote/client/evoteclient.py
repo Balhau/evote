@@ -1,3 +1,6 @@
+from M2Crypto.PGP.RSA import RSA
+from crypto.keypair import KeyPair
+
 __author__ = 'balhau'
 import requests
 import json
@@ -14,8 +17,12 @@ class EvoteClient:
         r=requests.post(self.url+"/newuser",json.dumps(req))
         return r.text
 
-    def registerPubKey(self,user,regKey,signature):
-        req={'user':user,'key':regKey,'signature':signature}
+    def registerPubKey(self,user,privKeySign,regKey):
+        pk=KeyPair()
+        pk.loadPrivateKey(privKeySign)
+        pubKeyData=open(regKey,'r').read()
+        b64sign=pk.signB64sha1(pubKeyData)
+        req={'user':user,'key':pubKeyData,'signature':b64sign}
         r=requests.post(self.url+"/regkey",json.dumps(req))
         return r.text
 
