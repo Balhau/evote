@@ -56,7 +56,7 @@ def main():
 
         #Register user in evote ser# vice
         if args.generate =='user':
-            print registerUser(server,args.username,args.pubkey,args.email)
+            print registerUser(server,args.name,args.pubkey,args.email)
 
         #Create New Survey
         if(args.generate == 'survey'):

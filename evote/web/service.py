@@ -1,4 +1,4 @@
-from web.controlls.operations import newUser, newSurvey, listSurveys
+from web.controlls.operations import newUser, newSurvey, listSurveys, STATUS_OK, STATUS_FAIL, regSurveyKey
 
 __author__ = 'balhau'
 
@@ -15,8 +15,7 @@ init_db()
 app=Flask(__name__)
 
 
-STATUS_OK='ok'
-STATUS_FAIL='fail'
+
 
 def getStatus(status):
     return '{"status": "%s"}'% status
@@ -52,7 +51,7 @@ def newuser():
 def regkey():
     try:
         data=json.loads(request.data)
-
+        regSurveyKey(data['user'],data['key'],data['signature'])
         return STATUS_OK
     except:
         return STATUS_FAIL

@@ -35,6 +35,13 @@ class KeyPair:
         signature=self.privkey.sign(s1,"sha1")
         return base64.b64encode(str(signature[0]))
 
-    def loadPublicKey(self,filename):
-        self.pubkey=RSA.load_pub_key(file(filename))
+    def verifyB4sha1(self,data,signature):
+        sig=base64.b64decode(signature)
+        sh1=sha1sum(str(data))
+        return self.pubkey.verify(sh1,[long(sig)])
 
+    def loadPublicKeyFromString(self,pkdata):
+        self.pubkey=CRSA.importKey(pkdata)
+
+    def loadPublicKey(self,filename):
+        self.pubkey=CRSA.importKey(open(filename).read())

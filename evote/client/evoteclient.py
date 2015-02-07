@@ -34,3 +34,9 @@ class EvoteClient:
     def listSurveys(self):
         r=requests.get(self.url+"/listsurveys")
         return r.text
+
+
+pk=KeyPair()
+pk.loadPrivateKey("/home/balhau/workspace/evote/evote/balhau_priv.der")
+pk.loadPublicKey("/home/balhau/workspace/evote/evote/balhau_pub.pem")
+
