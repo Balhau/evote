@@ -42,6 +42,16 @@ To create a public/private pair of keys you can execute
 
         python tools/evote.py  -g kpair -l 2048 -o user
 
+To list the surveys that are already created you can do
+
+	python tools/evote.py -L survey
+
+This will output a json string with all the surveys present in the database, for example:
+
+	[{"description": "Elei\u00e7\u00e3o para presidente do benfica do ano de 2014/2015", "id": 1, "name": "Presidente do Benfica 2014/2015"}]
+
+
+
 This will create in the current folder the files **user_priv.der** and **user_pub.pem** that are the public and
 private key respectively
         
