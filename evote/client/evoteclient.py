@@ -24,3 +24,6 @@ class EvoteClient:
         r=requests.post(self.url+"/newsurvey",json.dumps(req))
         return r.text
 
+    def listSurveys(self):
+        r=requests.get(self.url+"/listsurveys")
+        return r.text

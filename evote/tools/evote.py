@@ -40,10 +40,12 @@ def main():
         parser.add_argument('-m',  '--email')
         parser.add_argument('-n',  '--name')
         parser.add_argument('-d',  '--description')
-        parser.add_argument('-li'  '--list')
+        parser.add_argument('-L',  '--list')
         parser.add_argument('-v', dest='verbose', action='store_true')
+
         args = parser.parse_args()
         server=LOCALHOST
+
         if args.server:
             server=args.server
         #generate a keypair
@@ -60,7 +62,7 @@ def main():
 
         #List the surveys
         if args.list == 'survey':
-            print "list the surveys"
+            print EvoteClient(server).listSurveys()
 
 
 

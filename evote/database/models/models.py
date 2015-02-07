@@ -12,6 +12,10 @@ survey_user_table = Table('survey_user', Base.metadata,
     Column('survey_id', Integer, ForeignKey('survey.id'))
 )
 
+
+def as_dict(obj):
+    return {c.name: getattr(obj, c.name) for c in obj.__table__.columns}
+
 class User(Base):
     __tablename__='user'
     id=Column(Integer,primary_key=True)
@@ -70,6 +74,5 @@ class Survey(Base):
         self.description=description
 
     def __repr__(self):
-        return '<User %r, %r>' % (self.name,self.description)
-
+        return '<Survey %r, %r>' % (self.name,self.description)
 

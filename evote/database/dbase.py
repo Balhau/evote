@@ -1,3 +1,6 @@
+import json
+from sqlalchemy.ext.declarative.api import DeclarativeMeta
+
 __author__ = 'balhau'
 
 import inspect

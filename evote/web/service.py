@@ -1,4 +1,4 @@
-from web.controlls.operations import newUser, newSurvey
+from web.controlls.operations import newUser, newSurvey, listSurveys
 
 __author__ = 'balhau'
 
@@ -29,6 +29,7 @@ def withStatus(f):
         status=f()
         return getStatus(status)
     return wrapper
+
 
 @app.route('/')
 @withStatus
@@ -67,6 +68,11 @@ def newsurvey():
     except Exception, e:
         print e
         return STATUS_FAIL
+
+
+@app.route("/listsurveys",methods=['GET'])
+def listSurvey():
+    return listSurveys()
 
 
 if __name__ == '__main__':
