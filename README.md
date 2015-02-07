@@ -56,7 +56,31 @@ To check all this working open the **evote/evote/database/evote.db** SQLite data
  
  ![EVote User](http://shared.balhau.net/evote/newuser.png "EVote new user")
 
-###Notes
+
+##Organization
+
+This project consists of several little components.
+
+### Web
+
+The web component, which is inside the *evote/web* folder consists of a web application done with the help of the [Flask Framework](http://flask.pocoo.org/), wich is a mvc engine to help deploy easy and with little boilerplate code a web server running by default on **[Localhost:5000](http://localhost:5000)**. The web component is the front end for the operations on the [SQLite](https://sqlite.org/) database that holds all the relevante data. 
+
+### Database
+The database component is composed by some *Python* scripts and models inside the *evote/database* and *evote/database/models* folders. Here we have the ORM implementation built uppon the [SQLAlchemy framework](http://www.sqlalchemy.org/).
+You must note that with a little tweek you can adapt to use it with a [MySQL](https://www.mysql.com/) or [PostgreSQL](http://www.postgresql.org/) database
+
+### Shell Tools
+
+You can invoke the services available in the web component and in this way do something usefull by invoking the commands that are available in the *evote/tools/evote.py* script. This script allows you do several operations, as described previously, by invoking the **Json RPC** available in the web component.
+
+###Gui
+
+In the future, we hope next future, it will be added a Gtk based GUI to enable people who don't like to play with the shell to use the services available.
+
+
+
+
+##Notes
 
 For this project we use the **PyCharm IDE** (open edition) that is very recommended. It integrates very well with unit
 testing and is very nice to work. You should give it a try. 

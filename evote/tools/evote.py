@@ -50,7 +50,7 @@ def main():
         if args.generate =='kpair' :
             generateKP(args.length,args.output)
 
-        #Register user in evote service
+        #Register user in evote ser# vice
         if args.generate =='user':
             print registerUser(server,args.username,args.pubkey,args.email)
 
