@@ -90,7 +90,13 @@ You can invoke the services available in the web component and in this way do so
 In the future, we hope next future, it will be added a Gtk based GUI to enable people who don't like to play with the shell to use the services available.
 
 
+##FAQ's
 
+* It is known that public key cryptography is not good to cypher/sign large volume of data. Since you don't use symmetric algorithms isn't this extremely slow?
+	* Yes public key cryptography is several orders of magnitude slower than the symmetric algorithms. We solve this problem by not signing large volume of data. We use hash functions before signing the data, and by doing this we avoid the large data problem. This strategy works fine for signing protocols which is the case. Since we don't cypher the data we can afford to use only public key algorithms. If, in the future we need to cypher data we must do it by providing a list of symmetric algorithms and respective keys.
+
+* From the web server part we see that the data is not ciphered through the network, isn't this a problem?
+	* Sure it is. But honestly its just a matter to add ssl over the network and in this way the problem is solved. Since by doing it we only would had increase the complexity this *detail* was kept aside. But in future work the http conection will be replaced by a https with certificate validation of the server by the client side
 
 ##Notes
 
