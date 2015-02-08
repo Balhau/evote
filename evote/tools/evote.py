@@ -37,6 +37,7 @@ def main():
         parser.add_argument('-Pk', '--pubkey')
         parser.add_argument('-pk', '--privkey')
         parser.add_argument('-s',  '--server')
+        parser.add_argument('-S',  '--survey')
         parser.add_argument('-m',  '--email')
         parser.add_argument('-n',  '--name')
         parser.add_argument('-d',  '--description')
@@ -68,7 +69,7 @@ def main():
 
         #Reg key for survey
         if args.register =='key':
-            print EvoteClient(server).registerPubKey(args.name,args.privkey,args.pubkey)
+            print EvoteClient(server).registerPubKey(args.name,args.privkey,args.pubkey,args.survey)
 
 
     except Exception as inst:

@@ -17,12 +17,12 @@ class EvoteClient:
         r=requests.post(self.url+"/newuser",json.dumps(req))
         return r.text
 
-    def registerPubKey(self,user,privKeySign,regKey):
+    def registerPubKey(self,user,privKeySign,regKey,survey):
         pk=KeyPair()
         pk.loadPrivateKey(privKeySign)
         pubKeyData=open(regKey,'r').read()
         b64sign=pk.signB64sha1(pubKeyData)
-        req={'user':user,'key':pubKeyData,'signature':b64sign}
+        req={'user':user,'key':pubKeyData,'signature':b64sign,'survey':survey}
         r=requests.post(self.url+"/regkey",json.dumps(req))
         return r.text
 

@@ -18,7 +18,8 @@ app=Flask(__name__)
 
 
 def getStatus(status):
-    return '{"status": "%s"}'% status
+    return '{"status": "%s","description":"%s"}' % status
+
 
 
 #Decorator to wrap the status of the request into the controller
@@ -42,19 +43,19 @@ def newuser():
     try:
         data=json.loads(request.data)
         newUser(data['name'],data['pubkey'],data['mail'])
-        return STATUS_OK
-    except:
-        return STATUS_FAIL
+        return (STATUS_OK,"")
+    except Exception as ex:
+        return STATUS_FAIL(ex.message)
 
 @app.route("/regkey",methods=['POST'])
 @withStatus
 def regkey():
     try:
         data=json.loads(request.data)
-        regSurveyKey(data['user'],data['key'],data['signature'])
+        regSurveyKey(data['user'],data['key'],data['signature'],data['survey'])
         return STATUS_OK
-    except:
-        return STATUS_FAIL
+    except Exception as ex:
+        return STATUS_FAIL(ex.message)
 
 
 @app.route("/newsurvey",methods=['POST'])
@@ -64,9 +65,8 @@ def newsurvey():
         data=json.loads(request.data)
         newSurvey(data['surveyname'],data['description'])
         return STATUS_OK
-    except Exception, e:
-        print e
-        return STATUS_FAIL
+    except Exception as e:
+        return STATUS_FAIL(e.message)
 
 
 @app.route("/listsurveys",methods=['GET'])

@@ -40,6 +40,10 @@ class PubKey(Base):
     idSurvey=Column(Integer,ForeignKey('survey.id'))
     pubkey=Column(String)
 
+    def __init__(self,pubkey,idSurvey):
+        self.pubkey=pubkey
+        self.idSurvey=idSurvey
+
 
 
 class Vote(Base):
