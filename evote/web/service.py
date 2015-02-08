@@ -32,7 +32,6 @@ def withStatus(f):
 
 
 @app.route('/')
-@withStatus
 def index():
     return render_template('index.html')
 
@@ -52,8 +51,7 @@ def newuser():
 def regkey():
     try:
         data=json.loads(request.data)
-        regSurveyKey(data['user'],data['key'],data['signature'],data['survey'])
-        return STATUS_OK
+        return regSurveyKey(data['user'],data['key'],data['signature'],data['survey'])
     except Exception as ex:
         return STATUS_FAIL(ex.message)
 

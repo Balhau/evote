@@ -38,13 +38,16 @@ def regSurveyKey(user,key,signature,survey):
     if u == None or s == None:
         return STATUS_FAIL("The user or the survey don't exist")
 
-    #todo: Check if the user is already registered for that survey
+    for svs in u.surveys:
+        if svs == s:
+            return STATUS_FAIL("The user already submit a public key for this survey")
 
     kp=KeyPair()
     kp.loadPublicKeyFromString(u.pubKey)
     if kp.verifyB4sha1(key,signature):
         pk=PubKey(key,s.id)
         db_session.add(pk)
+        u.surveys.append(s)
         db_session.commit()
         return STATUS_OK
     return STATUS_FAIL("The signature is not valid")
