@@ -20,4 +20,7 @@ setup(	name='evote',
 	license='MIT License',
 	description='A proof of concept of a idea to Electronic Vote',
 	long_description=long_description,
-	packages=find_packages())
+	packages=find_packages(),
+    test_suite="tests"
+
+)
